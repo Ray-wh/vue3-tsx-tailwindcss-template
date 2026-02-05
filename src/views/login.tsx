@@ -6,7 +6,8 @@
  */
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { api } from '../api';
+import { api } from '@/api';
+import { useUserStore } from '@/stores/user';
 
 export default defineComponent({
   name: 'login',
@@ -23,7 +24,8 @@ export default defineComponent({
           username: form.value.username,
           password: form.value.password,
         });
-        localStorage.setItem('token', response.token);
+        const userStore = useUserStore();
+        userStore.login(response.user, response.token);
         router.push('/');
       } catch (error) {
         console.error('登录失败:', error);

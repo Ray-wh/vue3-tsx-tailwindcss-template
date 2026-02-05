@@ -23,7 +23,11 @@ class Request {
         // 在这里可以添加token等认证信息
         const token = localStorage.getItem('token')
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`
+          // 使用 AxiosHeaders 构造函数创建 headers
+          if (!config.headers) {
+            config.headers = new axios.AxiosHeaders()
+          }
+          config.headers.set('Authorization', `Bearer ${token}`)
         }
         return config
       },
@@ -41,9 +45,11 @@ class Request {
       (error) => {
         // 在这里可以处理错误，比如401跳转到登录页等
         if (error.response?.status === 401) {
-          // 清除token并跳转到登录页
+          // 清除token并跳转到登录页，避免重复跳转
           localStorage.removeItem('token')
-          window.location.href = '/login'
+          if (window.location.pathname !== '/login') {
+            window.location.href = '/login'
+          }
         }
         return Promise.reject(error)
       }

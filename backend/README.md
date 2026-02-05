@@ -23,12 +23,38 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository with TypeORM and JWT authentication.
+
+## 技术栈
+
+- **NestJS** - 渐进式 Node.js 框架
+- **TypeScript** - 类型安全的 JavaScript 超集
+- **TypeORM** - TypeScript ORM 框架
+- **MySQL** - 关系型数据库
+- **JWT** - JSON Web Token 认证
+- **Passport** - 认证中间件
+- **Swagger** - API 文档生成
+- **Class Validator** - 数据验证
 
 ## Project setup
 
 ```bash
 $ npm install
+```
+
+## 数据库配置
+
+1. 确保 MySQL 服务器已运行
+2. 创建数据库：`CREATE DATABASE nestjs;`
+3. 修改 `.env` 文件中的数据库配置
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=password
+DB_NAME=nestjs
+JWT_SECRET=secret
 ```
 
 ## Compile and run the project
@@ -55,6 +81,29 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## API 文档
+
+### Swagger UI
+访问 http://localhost:3000/api 查看 API 文档。
+
+### 认证
+使用 JWT Bearer Token 进行认证：
+```
+Authorization: Bearer <token>
+```
+
+### 接口示例
+```bash
+# 用户登录
+POST /auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "password"
+}
 ```
 
 ## Deployment

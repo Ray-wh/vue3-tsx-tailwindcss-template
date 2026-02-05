@@ -1,12 +1,23 @@
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/vue'
+import type { App } from 'vue'
 
 // 初始化Sentry
-export function initSentry() {
+export function initSentry(app: App, router: any) {
   const dsn = import.meta.env.VITE_SENTRY_DSN
   if (dsn) {
     Sentry.init({
+      app,
       dsn,
+      sendDefaultPii: true,
+      integrations: [
+        Sentry.browserTracingIntegration({ router }),
+        Sentry.replayIntegration()
+      ],
       tracesSampleRate: 1.0,
+      tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/],
+      replaysSessionSampleRate: 0.1,
+      replaysOnErrorSampleRate: 1.0,
+      enableLogs: true
     })
   }
 }
