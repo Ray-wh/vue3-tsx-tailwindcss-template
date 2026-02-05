@@ -1,14 +1,14 @@
-import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import Pages from 'vite-plugin-pages'
-import Layouts from 'vite-plugin-vue-layouts'
-import { vitePluginForArco } from '@arco-plugins/vite-vue'
-import { sentryVitePlugin } from '@sentry/vite-plugin'
+import { defineConfig, loadEnv } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import Pages from 'vite-plugin-pages';
+import Layouts from 'vite-plugin-vue-layouts';
+import { vitePluginForArco } from '@arco-plugins/vite-vue';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd());
 
   return {
     plugins: [
@@ -21,11 +21,11 @@ export default defineConfig(({ mode }) => {
         importMode: 'async',
         extendRoute: (route) => {
           console.log('Route generated:', route);
-          return route
+          return route;
         },
         onRoutesGenerated: (routes) => {
           console.log('All routes generated:', routes);
-          return routes
+          return routes;
         },
       }),
       Layouts({
@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
         extensions: ['tsx', 'jsx', 'vue'],
       }),
       vitePluginForArco({
-        style: 'css'
+        style: 'css',
       }),
       // Sentry插件，仅在生产环境启用
       mode === 'production' && env.VITE_SENTRY_DSN
@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      // 打包优化
+      outDir: 'dist',
       target: 'es2015',
       minify: 'terser',
       terserOptions: {
@@ -62,16 +62,20 @@ export default defineConfig(({ mode }) => {
           drop_debugger: mode === 'production',
         },
       },
-      // 代码分割
       rollupOptions: {
         output: {
           manualChunks: {
             vendor: ['vue', 'vue-router', 'pinia'],
+            arco: ['@arco-design/web-vue'],
+            sentry: ['@sentry/vue'],
           },
         },
       },
-      // 生成source map，仅在生产环境启用
       sourcemap: mode === 'production' && !!env.VITE_SENTRY_DSN,
+    },
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'pinia'],
+      exclude: ['@arco-design/web-vue'],
     },
     server: {
       port: 3001,
@@ -82,5 +86,5 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-  }
-})
+  };
+});

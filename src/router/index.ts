@@ -4,8 +4,8 @@ import { setupLayouts } from 'virtual:generated-layouts';
 
 const routes = setupLayouts(generatedRoutes);
 
-console.log("Original routes:", generatedRoutes);
-console.log("Routes with layouts:", routes);
+console.log('Original routes:', generatedRoutes);
+console.log('Routes with layouts:', routes);
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,9 +14,9 @@ const router = createRouter({
 
 // 路由守
 router.beforeEach((to, from, next) => {
-  console.log("to:", to);
-  console.log("from:", from);
-  console.log("next:", next);
+  console.log('to:', to);
+  console.log('from:', from);
+  console.log('next:', next);
 
   // 设置页面标题
   document.title = (to.meta.title as string) || 'Vue3 App';
@@ -36,7 +36,10 @@ router.beforeEach((to, from, next) => {
 // 动态路由添加方法
 export function addDynamicRoutes(routes: any[]) {
   routes.forEach((route) => {
-    router.addRoute(route);
+    const existingRoute = router.hasRoute(route.name);
+    if (!existingRoute) {
+      router.addRoute(route);
+    }
   });
 }
 
