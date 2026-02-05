@@ -35,9 +35,7 @@ export default defineComponent({
     return () => (
       <div class="min-h-screen flex items-center justify-center bg-gray-100">
         <a-card class="w-[40vw] !rounded-2xl p-6">
-          <a-typography-title class="text-center">
-            登录
-          </a-typography-title>
+          <a-typography-title class="text-center">登录</a-typography-title>
           <a-form model={form.value}>
             <a-form-item
               label="用户名"

@@ -1,6 +1,6 @@
 // src/layouts/admin.tsx
-import { defineComponent } from 'vue'
-import { RouterView } from 'vue-router'
+import { defineComponent } from 'vue';
+import { RouterView } from 'vue-router';
 
 const AdminLayout = defineComponent({
   setup() {
@@ -11,8 +11,8 @@ const AdminLayout = defineComponent({
           <RouterView />
         </main>
       </div>
-    )
-  }
-})
+    );
+  },
+});
 
-export default AdminLayout
+export default AdminLayout;

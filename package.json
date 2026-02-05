@@ -8,7 +8,8 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "stylelint": "stylelint \"**/*.{vue,css,scss,sass}\" --fix"
+    "stylelint": "stylelint \"**/*.{vue,css,scss,sass}\" --fix",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,vue,css,scss,sass}\""
   },
   "lint-staged": {
     "*.{vue,js,jsx,ts,tsx}": [

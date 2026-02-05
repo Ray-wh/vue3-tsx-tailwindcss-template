@@ -4,12 +4,12 @@
  *   layout: public
  *   title: 自定义指令 Demo
  */
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'directive-demo',
   setup() {
-    const inputValue = ref('')
+    const inputValue = ref('');
 
     return () => (
       <div class="min-h-screen flex flex-col items-center justify-center p-6">
@@ -35,6 +35,6 @@ export default defineComponent({
           </div>
         </a-card>
       </div>
-    )
-  }
-})
+    );
+  },
+});

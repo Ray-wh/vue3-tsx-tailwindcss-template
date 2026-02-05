@@ -86,15 +86,19 @@ $ npm run test:cov
 ## API 文档
 
 ### Swagger UI
+
 访问 http://localhost:3000/api 查看 API 文档。
 
 ### 认证
+
 使用 JWT Bearer Token 进行认证：
+
 ```
 Authorization: Bearer <token>
 ```
 
 ### 接口示例
+
 ```bash
 # 用户登录
 POST /auth/login

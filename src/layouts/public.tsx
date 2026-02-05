@@ -1,6 +1,6 @@
 // src/layouts/public.tsx
-import { defineComponent } from 'vue'
-import { RouterView } from 'vue-router'
+import { defineComponent } from 'vue';
+import { RouterView } from 'vue-router';
 
 const PublicLayout = defineComponent({
   setup() {
@@ -11,8 +11,8 @@ const PublicLayout = defineComponent({
           <RouterView />
         </main>
       </div>
-    )
-  }
-})
+    );
+  },
+});
 
-export default PublicLayout
+export default PublicLayout;

@@ -4,15 +4,17 @@
  *   layout: public
  *   title: Hook Demo
  */
-import { defineComponent } from 'vue'
-import { useMousePosition } from '@/hooks/useMousePosition'
-import { useFetch } from '@/hooks/useFetch'
+import { defineComponent } from 'vue';
+import { useMousePosition } from '@/hooks/useMousePosition';
+import { useFetch } from '@/hooks/useFetch';
 
 export default defineComponent({
   name: 'hook-demo',
   setup() {
-    const { x, y } = useMousePosition()
-    const { data, loading, error, refetch } = useFetch('https://jsonplaceholder.typicode.com/todos/1')
+    const { x, y } = useMousePosition();
+    const { data, loading, error, refetch } = useFetch(
+      'https://jsonplaceholder.typicode.com/todos/1'
+    );
 
     return () => (
       <div class="min-h-screen flex flex-col items-center justify-center p-6">
@@ -25,7 +27,9 @@ export default defineComponent({
             <div class="space-y-2">
               <a-typography-text>鼠标位置：</a-typography-text>
               <a-card class="p-4">
-                <p>X: {x.value}, Y: {y.value}</p>
+                <p>
+                  X: {x.value}, Y: {y.value}
+                </p>
               </a-card>
             </div>
 
@@ -34,7 +38,11 @@ export default defineComponent({
               {loading.value ? (
                 <a-spin />
               ) : error.value ? (
-                <a-alert type="error" message="加载失败" description={error.value.message} />
+                <a-alert
+                  type="error"
+                  message="加载失败"
+                  description={error.value.message}
+                />
               ) : (
                 <a-card class="p-4">
                   <pre>{JSON.stringify(data.value, null, 2)}</pre>
@@ -51,6 +59,6 @@ export default defineComponent({
           </div>
         </a-card>
       </div>
-    )
-  }
-})
+    );
+  },
+});

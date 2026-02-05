@@ -11,13 +11,13 @@ const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
-// 注册全局自定义指令
-registerGlobalDirectives(app);
-
 app.use(pinia);
 app.use(router);
 
 // 初始化Sentry
 initSentry(app, router);
+
+// 注册全局自定义指令
+registerGlobalDirectives(app);
 
 app.mount('#app');

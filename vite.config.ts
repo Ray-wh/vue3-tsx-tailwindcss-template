@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: 'dist',
+      // 打包优化
       target: 'es2015',
       minify: 'terser',
       terserOptions: {
@@ -62,6 +62,7 @@ export default defineConfig(({ mode }) => {
           drop_debugger: mode === 'production',
         },
       },
+      // 代码分割
       rollupOptions: {
         output: {
           manualChunks: {
@@ -71,11 +72,8 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+      // 生成source map，仅在生产环境启用
       sourcemap: mode === 'production' && !!env.VITE_SENTRY_DSN,
-    },
-    optimizeDeps: {
-      include: ['vue', 'vue-router', 'pinia'],
-      exclude: ['@arco-design/web-vue'],
     },
     server: {
       port: 3001,

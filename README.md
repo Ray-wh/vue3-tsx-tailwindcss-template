@@ -17,11 +17,13 @@
 ## 快速开始
 
 ### 安装依赖
+
 ```bash
 npm install
 ```
 
 ### 配置环境变量
+
 ```bash
 # 复制环境变量模板
 cp .env.example .env
@@ -30,21 +32,25 @@ cp .env.example .env
 ```
 
 ### 开发模式
+
 ```bash
 npm run dev
 ```
 
 ### 生产构建
+
 ```bash
 npm run build
 ```
 
 ### 预览生产构建
+
 ```bash
 npm run preview
 ```
 
 ### 代码检查
+
 ```bash
 npm run lint
 npm run stylelint
@@ -71,6 +77,7 @@ src/
 后端项目位于 `backend/` 目录，采用 NestJS + TypeORM + JWT 认证。
 
 ### 后端快速开始
+
 ```bash
 cd backend
 npm install
@@ -80,12 +87,14 @@ npm run start:dev
 ## 部署
 
 ### 前端部署
+
 ```bash
 npm run build
 # 将 dist 目录部署到 Nginx 或 CDN
 ```
 
 ### 后端部署
+
 ```bash
 cd backend
 npm run build

@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export interface UserInfo {
-  id: number
-  username: string
-  role: string
-  isActive: boolean
+  id: number;
+  username: string;
+  role: string;
+  isActive: boolean;
 }
 
 export const useUserStore = defineStore('user', {
@@ -14,13 +14,13 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
     login(userInfo: UserInfo, token: string) {
-      this.userInfo = userInfo
-      this.token = token
+      this.userInfo = userInfo;
+      this.token = token;
     },
     logout() {
-      this.userInfo = null
-      this.token = ''
+      this.userInfo = null;
+      this.token = '';
     },
   },
   persist: true, // 启用持久化
-})
+});

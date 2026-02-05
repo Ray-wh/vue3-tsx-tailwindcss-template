@@ -17,7 +17,7 @@ export default defineComponent({
       } catch (error) {
         captureError(error, {
           test: 'sentry-config-test',
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         });
         alert('错误已发送到 Sentry，请登录 Sentry 后台查看');
       }
@@ -39,7 +39,13 @@ export default defineComponent({
             点击下方按钮测试 Sentry 配置是否成功
           </p>
           <div class="space-y-4">
-            <a-button class="mr-2" type="primary" onClick={testSentry} block size="large">
+            <a-button
+              class="mr-2"
+              type="primary"
+              onClick={testSentry}
+              block
+              size="large"
+            >
               发送测试错误到 Sentry
             </a-button>
             <a-button type="primary" onClick={testMessage} block size="large">
