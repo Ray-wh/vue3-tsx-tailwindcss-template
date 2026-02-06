@@ -4,15 +4,29 @@ import { setupLayouts } from 'virtual:generated-layouts';
 
 const routes = setupLayouts(generatedRoutes);
 
+// 添加404页面路由
+const notFoundRoute = {
+  path: '/:pathMatch(.*)*',
+  component: () => import('@/views/not-found.tsx'),
+  meta: {
+    title: '404 页面不存在',
+    layout: 'default'
+  }
+};
+
+// 将404路由添加到所有路由的末尾
+routes.push(notFoundRoute);
+
 console.log('Original routes:', generatedRoutes);
 console.log('Routes with layouts:', routes);
+console.log('Added 404 route:', notFoundRoute);
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
 
-// 路由守
+// 路由守卫
 router.beforeEach((to, from, next) => {
   console.log('to:', to);
   console.log('from:', from);
