@@ -23,91 +23,38 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository with TypeORM and JWT authentication.
-
-## 技术栈
-
-- **NestJS** - 渐进式 Node.js 框架
-- **TypeScript** - 类型安全的 JavaScript 超集
-- **TypeORM** - TypeScript ORM 框架
-- **MySQL** - 关系型数据库
-- **JWT** - JSON Web Token 认证
-- **Passport** - 认证中间件
-- **Swagger** - API 文档生成
-- **Class Validator** - 数据验证
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Project setup
 
 ```bash
-$ npm install
-```
-
-## 数据库配置
-
-1. 确保 MySQL 服务器已运行
-2. 创建数据库：`CREATE DATABASE nestjs;`
-3. 修改 `.env` 文件中的数据库配置
-
-```env
-DB_HOST=localhost
-DB_PORT=3306
-DB_USERNAME=root
-DB_PASSWORD=password
-DB_NAME=nestjs
-JWT_SECRET=secret
+$ pnpm install
 ```
 
 ## Compile and run the project
 
 ```bash
 # development
-$ npm run start
+$ pnpm run start
 
 # watch mode
-$ npm run start:dev
+$ pnpm run start:dev
 
 # production mode
-$ npm run start:prod
+$ pnpm run start:prod
 ```
 
 ## Run tests
 
 ```bash
 # unit tests
-$ npm run test
+$ pnpm run test
 
 # e2e tests
-$ npm run test:e2e
+$ pnpm run test:e2e
 
 # test coverage
-$ npm run test:cov
-```
-
-## API 文档
-
-### Swagger UI
-
-访问 http://localhost:3000/api 查看 API 文档。
-
-### 认证
-
-使用 JWT Bearer Token 进行认证：
-
-```
-Authorization: Bearer <token>
-```
-
-### 接口示例
-
-```bash
-# 用户登录
-POST /auth/login
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "password"
-}
+$ pnpm run test:cov
 ```
 
 ## Deployment
@@ -117,7 +64,7 @@ When you're ready to deploy your NestJS application to production, there are som
 If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
 
 ```bash
-$ npm install -g @nestjs/mau
+$ pnpm install -g @nestjs/mau
 $ mau deploy
 ```
 

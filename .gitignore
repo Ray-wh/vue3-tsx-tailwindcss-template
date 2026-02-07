@@ -27,6 +27,12 @@ build
 .vscode/*
 !.vscode/extensions.json
 .idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 .DS_Store
 *.suo
 *.ntvs*
@@ -40,11 +46,13 @@ Thumbs.db
 # Testing
 coverage
 *.lcov
+.nyc_output
 
 # Temporary files
 *.tmp
 *.temp
 .cache
+.temp
 
 # TypeScript
 *.tsbuildinfo
@@ -64,14 +72,11 @@ vue.config.js
 # Vite
 .vite
 
-# Backend specific
-backend/node_modules
-backend/.pnpm-debug.log*
-backend/npm-debug.log*
-backend/yarn-debug.log*
-backend/yarn-error.log*
-backend/dist
-backend/build
-backend/coverage
-backend/*.tsbuildinfo
-backend/.eslintcache
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
