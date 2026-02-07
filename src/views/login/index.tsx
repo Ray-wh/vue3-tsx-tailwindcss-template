@@ -6,8 +6,8 @@
  */
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { api } from '@/api';
-import { useUserStore } from '@/stores/user';
+import { api } from '@/core/api';
+import { useUserStore } from '@/core/stores/user';
 
 export default defineComponent({
   name: 'login',

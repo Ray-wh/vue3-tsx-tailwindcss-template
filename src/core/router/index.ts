@@ -7,7 +7,7 @@ const routes = setupLayouts(generatedRoutes);
 // 添加404页面路由
 const notFoundRoute = {
   path: '/:pathMatch(.*)*',
-  component: () => import('@/views/not-found.tsx'),
+  component: () => import('@/views/not-found'),
   meta: {
     title: '404 页面不存在',
     layout: 'default'
