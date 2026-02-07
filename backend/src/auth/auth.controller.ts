@@ -11,13 +11,13 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({ summary: '注册' })
-  async register(@Body() registerDto: RegisterDto) {
+  register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
   }
 
   @Post('login')
   @ApiOperation({ summary: '登录' })
-  async login(@Body() loginDto: LoginDto) {
+  login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
 
@@ -25,7 +25,7 @@ export class AuthController {
   @ApiOperation({ summary: '获取用户信息' })
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
-  async getProfile(@Body() body: any) {
+  getProfile() {
     // 这里可以通过req.user获取用户信息
     return { message: '获取用户信息成功' };
   }

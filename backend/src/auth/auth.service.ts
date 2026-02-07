@@ -1,10 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { LoginDto, RegisterDto } from './auth.dto';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -15,9 +12,9 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async register(registerDto: RegisterDto) {
+  register(registerDto: RegisterDto) {
     // 暂时返回模拟数据，等数据库准备好后再实现真实逻辑
-    const { username, password, role } = registerDto;
+    const { username, role } = registerDto;
 
     // 生成token
     const payload = { username, sub: 1, role };
@@ -36,7 +33,7 @@ export class AuthService {
     };
   }
 
-  async login(loginDto: LoginDto) {
+  login(loginDto: LoginDto) {
     // 暂时返回模拟数据，等数据库准备好后再实现真实逻辑
     const { username, password } = loginDto;
 
@@ -62,7 +59,7 @@ export class AuthService {
     };
   }
 
-  async validateUser(username: string): Promise<User | null> {
+  validateUser(username: string): User | null {
     // 暂时返回模拟数据
     if (username) {
       return {
