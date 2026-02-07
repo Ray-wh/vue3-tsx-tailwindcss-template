@@ -1,6 +1,6 @@
 # Vue3 + TSX + TailwindCSS + Pinia 模板
 
-一个现代化的 Vue3 前端项目模板，采用 TSX 语法、TailwindCSS 样式和 Pinia 状态管理。
+一个现代化的 Vue3 前端项目模板，采用 TSX 语法、TailwindCSS 样式和 Pinia 状态管理，集成了完整的开发工具链和最佳实践。
 
 ## 技术栈
 
@@ -13,64 +13,102 @@
 - **Vue Router** - Vue 官方路由管理器
 - **Axios** - HTTP 客户端
 - **Sentry** - 错误监控平台
+- **Arco Design** - 企业级 UI 组件库
+- **pnpm** - 快速的包管理器
 
 ## 快速开始
 
 ### 安装依赖
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 配置环境变量
 
-```bash
-# 复制环境变量模板
-cp .env.example .env
+项目已包含 `.env.development` 和 `.env.production` 文件，可根据需要修改配置：
 
-# 编辑 .env 文件，配置 Sentry DSN 和 API 地址
-```
+- `VITE_SENTRY_DSN` - Sentry 错误监控 DSN
+- `VITE_API_BASE_URL` - API 基础地址
 
 ### 开发模式
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### 生产构建
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 预览生产构建
 
 ```bash
-npm run preview
+pnpm run preview
 ```
 
 ### 代码检查
 
 ```bash
-npm run lint
-npm run stylelint
+pnpm run lint
+pnpm run stylelint
+pnpm run prettier
 ```
 
 ## 项目结构
 
 ```
 src/
-├── api/          # API 接口定义
 ├── assets/       # 静态资源
+│   └── style/
+│       └── tailwind.css
+├── core/         # 核心功能
+│   ├── api/      # API 接口定义
+│   ├── router/   # 路由配置
+│   ├── stores/   # Pinia 状态管理
+│   └── utils/    # 工具函数
+├── directives/   # 自定义指令
+├── hooks/        # 自定义 Hooks
 ├── layouts/      # 布局组件
-├── router/       # 路由配置
-├── stores/       # Pinia 状态管理
 ├── types/        # TypeScript 类型定义
-├── utils/        # 工具函数
 ├── views/        # 页面组件
-├── App.tsx       # 根组件
-└── main.ts       # 入口文件
+└── main.tsx      # 入口文件
 ```
+
+## 核心功能
+
+### 自定义指令
+
+- `v-click-outside` - 点击外部关闭
+- `v-copy` - 复制文本到剪贴板
+- `v-debounce` - 防抖
+- `v-focus` - 自动聚焦
+- `v-throttle` - 节流
+
+### 自定义 Hooks
+
+- `useFetch` - 数据获取 Hook
+- `useMousePosition` - 鼠标位置 Hook
+
+### 布局组件
+
+- `default` - 默认布局
+- `admin` - 管理后台布局
+- `public` - 公共布局
+
+### 状态管理
+
+- `user` - 用户状态管理（支持持久化）
+
+### API 请求
+
+封装了 Axios，支持请求拦截、响应拦截和错误处理。
+
+### 错误监控
+
+集成了 Sentry，支持生产环境错误监控。
 
 ## 后端项目
 
@@ -80,8 +118,8 @@ src/
 
 ```bash
 cd backend
-npm install
-npm run start:dev
+pnpm install
+pnpm run start:dev
 ```
 
 ## 部署
@@ -89,7 +127,7 @@ npm run start:dev
 ### 前端部署
 
 ```bash
-npm run build
+pnpm run build
 # 将 dist 目录部署到 Nginx 或 CDN
 ```
 
@@ -97,9 +135,17 @@ npm run build
 
 ```bash
 cd backend
-npm run build
+pnpm run build
 pm2 start dist/main.js --name nestjs-api
 ```
+
+## 开发工具
+
+- **ESLint** - 代码质量检查
+- **StyleLint** - CSS 样式检查
+- **Prettier** - 代码格式化
+- **Husky** - Git 提交钩子
+- **CommitLint** - 提交信息规范检查
 
 ## 许可证
 
