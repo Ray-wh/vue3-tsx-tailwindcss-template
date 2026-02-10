@@ -14,12 +14,23 @@ const notFoundRoute = {
   }
 };
 
-// 将404路由添加到所有路由的末尾
-routes.push(notFoundRoute);
+// 添加用户管理路由
+const usersRoute = {
+  path: '/users',
+  component: () => import('@/views/users'),
+  meta: {
+    title: '用户管理',
+    layout: 'default'
+  }
+};
+
+// 将404路由和用户管理路由添加到所有路由的末尾
+routes.push(notFoundRoute, usersRoute);
 
 console.log('Original routes:', generatedRoutes);
 console.log('Routes with layouts:', routes);
 console.log('Added 404 route:', notFoundRoute);
+console.log('Added users route:', usersRoute);
 
 const router = createRouter({
   history: createWebHistory(),

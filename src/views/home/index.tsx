@@ -5,10 +5,17 @@
  *   title: 欢迎来到首页
  */
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'home',
   setup() {
+    const router = useRouter();
+    
+    const goToUsers = () => {
+      router.push('/users');
+    };
+    
     return () => (
       <div class="p-6">
         <a-card>
@@ -17,7 +24,7 @@ export default defineComponent({
             这是一个使用 Vue3 + Vite + TSX + Arco Design Vue 构建的项目
           </a-typography-paragraph>
           <div class="flex gap-4 mt-6">
-            <a-button type="primary">查看用户</a-button>
+            <a-button type="primary" onClick={goToUsers}>用户管理</a-button>
             <a-button type="outline">系统设置</a-button>
           </div>
         </a-card>
