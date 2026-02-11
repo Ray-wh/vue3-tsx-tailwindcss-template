@@ -6,8 +6,8 @@
  */
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { api } from '@/core/api';
-import { useUserStore } from '@/core/stores/user';
+import { authApi } from '@/api/auth';
+import { useUserStore, type UserInfo } from '@core/stores/user';
 
 export default defineComponent({
   name: 'login',
@@ -20,12 +20,22 @@ export default defineComponent({
 
     const handleLogin = async () => {
       try {
-        const response = await api.login({
+        const response = await authApi.login({
           username: form.value.username,
           password: form.value.password,
         });
         const userStore = useUserStore();
-        userStore.login(response.user, response.token);
+        userStore.login(
+          {
+            id: response.user.id,
+            username: response.user.username,
+            email: response.user.email,
+            role: response.user.isAdmin ? 'admin' : 'user',
+            isAdmin: response.user.isAdmin,
+            isActive: true,
+          } as UserInfo,
+          response.token
+        );
         router.push('/');
       } catch (error) {
         console.error('登录失败:', error);

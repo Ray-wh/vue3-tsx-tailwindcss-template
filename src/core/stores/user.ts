@@ -3,7 +3,9 @@ import { defineStore } from 'pinia';
 export interface UserInfo {
   id: number;
   username: string;
+  email: string;
   role: string;
+  isAdmin: boolean;
   isActive: boolean;
 }
 
@@ -22,5 +24,5 @@ export const useUserStore = defineStore('user', {
       this.token = '';
     },
   },
-  persist: true, // 启用持久化
+  persist: true,
 });

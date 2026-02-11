@@ -3,11 +3,11 @@
  */
 import { defineComponent, ref, onMounted } from 'vue';
 import {
-  api,
+  userApi,
   type User,
   type CreateUserDto,
   type UpdateUserDto,
-} from '@/core/api';
+} from '@/api/user';
 import { Message, Modal } from '@arco-design/web-vue';
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
     const fetchUsers = async () => {
       loading.value = true;
       try {
-        const data = await api.getUsers();
+        const data = await userApi.getList();
         users.value = data;
       } catch (error) {
         Message.error('获取用户列表失败');
@@ -45,7 +45,7 @@ export default defineComponent({
     // 创建用户
     const handleCreate = async () => {
       try {
-        await api.createUser(formData.value);
+        await userApi.create(formData.value);
         Message.success('用户创建成功');
         showModal.value = false;
         resetForm();
@@ -65,7 +65,7 @@ export default defineComponent({
           phone: formData.value.phone,
           isAdmin: formData.value.isAdmin,
         };
-        await api.updateUser(currentUser.value.id, updateData);
+        await userApi.update(currentUser.value.id, updateData);
         Message.success('用户更新成功');
         editModal.value = false;
         resetForm();
@@ -82,7 +82,7 @@ export default defineComponent({
         content: '确定要删除这个用户吗？',
         onOk: async () => {
           try {
-            await api.deleteUser(id);
+            await userApi.delete(id);
             Message.success('用户删除成功');
             await fetchUsers();
           } catch (error: any) {

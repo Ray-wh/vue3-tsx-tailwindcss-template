@@ -1,8 +1,10 @@
 import * as Sentry from '@sentry/vue';
 import type { App } from 'vue';
+import router from '../router';
+import type { Router } from 'vue-router';
 
 // 初始化Sentry
-export function initSentry(app: App, router: any) {
+export function registerGlobalSentry(app: App) {
   const dsn = import.meta.env.VITE_SENTRY_DSN;
   if (dsn) {
     Sentry.init({
@@ -10,7 +12,7 @@ export function initSentry(app: App, router: any) {
       dsn, // Sentry DSN (数据源名称)
       sendDefaultPii: true, // 发送默认的个人身份信息
       integrations: [
-        Sentry.browserTracingIntegration({ router }), // 浏览器追踪集成，自动追踪路由变化
+        Sentry.browserTracingIntegration({ router: router as Router }), // 浏览器追踪集成，自动追踪路由变化
         Sentry.replayIntegration(), // 会话重放集成，记录用户操作和页面状态
       ],
       tracesSampleRate: 1.0, // 事务采样率 (1.0 = 100%)
@@ -60,7 +62,7 @@ export function isSentryInitialized() {
 }
 
 export default {
-  init: initSentry,
+  registerGlobalSentry,
   captureError,
   captureMessage,
   setUser,

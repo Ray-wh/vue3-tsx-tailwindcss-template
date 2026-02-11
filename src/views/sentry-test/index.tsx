@@ -5,7 +5,7 @@
  *   title: Sentry 测试
  */
 import { defineComponent } from 'vue';
-import { captureError, captureMessage } from '@/core/utils/sentry';
+import { captureError, captureMessage } from '@core/utils/sentry';
 
 export default defineComponent({
   name: 'sentry-test',

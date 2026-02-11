@@ -1,41 +1,27 @@
-import { createApp, defineComponent, onErrorCaptured } from 'vue';
-import { createPinia } from 'pinia';
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import { createApp } from 'vue';
 import { RouterView } from 'vue-router';
 import '@/assets/style/tailwind.css';
-import router from '@/core/router';
-import { initSentry } from '@/core/utils/sentry';
-import { registerGlobalDirectives } from '@/directives';
+import { registerGlobalRouter } from '@core/router';
+import { registerGlobalPinia } from '@core/stores';
+import { registerGlobalSentry } from '@core/utils/sentry';
+import { registerGlobalDirectives } from '@core/directives';
+import { registerGlobalComponents } from '@core/components';
 
-// 定义 App 组件
-const App = defineComponent({
-  name: 'App',
-  setup() {
-    onErrorCaptured((error) => {
-      console.error('应用错误:', error);
-      return false;
-    });
+const app = createApp({ render: () => <RouterView /> });
 
-    return () => (
-      <div class="min-h-screen">
-        <RouterView />
-      </div>
-    );
-  },
-});
+app.config.errorHandler = (err, ins, info) => {
+  const errorMsg = err instanceof Error ? err.message : String(err);
+  console.error(
+    `[全局错误] 组件: ${ins?.$options.name || '根组件'} | 位置: ${info} | 信息: ${errorMsg}`
+  );
+};
 
-// 初始化应用
-const app = createApp(App);
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
-
-app.use(pinia);
-app.use(router);
-
-// 初始化Sentry
-initSentry(app, router);
-
-// 注册全局自定义指令
-registerGlobalDirectives(app);
+[
+  registerGlobalPinia,
+  registerGlobalRouter,
+  registerGlobalSentry,
+  registerGlobalDirectives,
+  registerGlobalComponents,
+].forEach((register) => register(app));
 
 app.mount('#app');

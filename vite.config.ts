@@ -20,11 +20,11 @@ export default defineConfig(({ mode }) => {
         routeBlockLang: 'yaml',
         importMode: 'async',
         extendRoute: (route) => {
-          console.log('Route generated:', route);
+          // console.log('Route generated:', route);
           return route;
         },
         onRoutesGenerated: (routes) => {
-          console.log('All routes generated:', routes);
+          // console.log('All routes generated:', routes);
           return routes;
         },
       }),
@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': '/src',
+        '@core': '/src/core',
       },
     },
     build: {

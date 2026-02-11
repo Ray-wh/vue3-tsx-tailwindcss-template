@@ -7,6 +7,7 @@ import clickOutside from './click-outside';
 import debounce from './debounce';
 import throttle from './throttle';
 import copy from './copy';
+import type { App } from 'vue';
 
 // 全局指令（自动注册到全局）
 export const globalDirectives = {
@@ -23,7 +24,7 @@ export const localDirectives = {
 };
 
 // 注册所有全局指令
-export const registerGlobalDirectives = (app: any) => {
+export const registerGlobalDirectives = (app: App) => {
   Object.entries(globalDirectives).forEach(([name, directive]) => {
     app.directive(name, directive);
   });
