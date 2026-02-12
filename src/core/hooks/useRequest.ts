@@ -1,19 +1,5 @@
 import { ref, onUnmounted } from 'vue';
-import type { Ref } from 'vue';
-
-export interface UseRequestOptions {
-  immediate?: boolean;
-}
-
-export interface UseRequestReturn<T> {
-  data: Ref<T | null>;
-  loading: Ref<boolean>;
-  error: Ref<Error | null>;
-  execute: () => Promise<T>;
-  getData: () => T | null;
-  getLoading: () => boolean;
-  getError: () => Error | null;
-}
+import type { UseRequestOptions, UseRequestReturn } from './types';
 
 export function useRequest<T>(
   requestFn: () => Promise<T>,
@@ -59,12 +45,12 @@ export function useRequest<T>(
   });
 
   return {
-    data: data as Ref<T | null>,
-    loading: loading as Ref<boolean>,
-    error: error as Ref<Error | null>,
-    execute: execute as () => Promise<T>,
+    data: data,
+    loading: loading,
+    error: error,
+    execute: execute,
     getData: () => data.value,
     getLoading: () => loading.value,
     getError: () => error.value,
-  };
+  } as UseRequestReturn<T>;
 }

@@ -1,4 +1,4 @@
-import { http } from '@core/utils/request';
+import { http } from '@/core/http';
 
 export interface User {
   id: number;

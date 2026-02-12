@@ -2,11 +2,11 @@
  * 自定义指令集合
  * 分为全局指令和局部指令
  */
-import focus from './focus';
-import clickOutside from './click-outside';
-import debounce from './debounce';
-import throttle from './throttle';
-import copy from './copy';
+import focus from './v-focus';
+import clickOutside from './v-click-outside';
+import debounce from './v-debounce';
+import throttle from './v-throttle';
+import copy from './v-copy';
 import type { App } from 'vue';
 
 // 全局指令（自动注册到全局）

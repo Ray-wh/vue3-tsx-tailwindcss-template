@@ -2,6 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import generatedRoutes from '~pages';
 import { setupLayouts } from 'virtual:generated-layouts';
 import type { App } from 'vue';
+import tokenService from '@/core/token';
+
+// 路由配置
+const routerConfig = {
+  defaultTitle: 'Vue3 App',
+};
 
 // 初始化路由（合并布局 + 自定义路由）
 const routes = setupLayouts(generatedRoutes).concat([
@@ -20,10 +26,13 @@ const router = createRouter({
 
 // 路由守卫：标题设置 + 权限校验
 router.beforeEach((to, _, next) => {
-  document.title = (to.meta.title as string) || 'Vue3 App';
-  to.meta.requiresAuth && !localStorage.getItem('token')
-    ? next({ name: 'login' })
-    : next();
+  document.title = (to.meta.title as string) || routerConfig.defaultTitle;
+  
+  if (to.meta.requiresAuth && !tokenService.hasToken()) {
+    next({ name: tokenService.getLoginRoute() });
+  } else {
+    next();
+  }
 });
 
 // 动态添加路由（去重）

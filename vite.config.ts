@@ -50,7 +50,6 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': '/src',
-        '@core': '/src/core',
       },
     },
     build: {
