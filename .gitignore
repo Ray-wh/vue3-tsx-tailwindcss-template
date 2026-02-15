@@ -20,8 +20,12 @@ build
 
 # Environment variables
 # .env is committed (contains common configuration)
+.env
+.env.test
 .env.local
 .env.*.local
+.env.development
+.env.production
 
 # Editor directories and files
 .vscode/*
