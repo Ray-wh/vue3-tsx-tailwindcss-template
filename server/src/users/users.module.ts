@@ -4,9 +4,9 @@
  */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity.js'; // 用户实体
-import { UserService } from './user.service.js'; // 用户服务
-import { UserController } from './user.controller.js'; // 用户控制器
+import { User } from './user.entity'; // 用户实体
+import { UserService } from './user.service'; // 用户服务
+import { UserController } from './user.controller'; // 用户控制器
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])], // 注册用户实体

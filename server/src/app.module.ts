@@ -5,18 +5,18 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
-import { UsersModule } from './users/users.module.js';
-import databaseConfig from './config/database.config.js';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
     // 配置模块，加载环境变量和自定义配置
     ConfigModule.forRoot({
-      isGlobal: true, // 全局配置
-      envFilePath: '.env', // 环境变量文件路径
-      load: [databaseConfig], // 加载数据库配置
+      isGlobal: true,
+      envFilePath: [`.env.${process.env.NODE_ENV || 'development'}`, '.env'],
+      load: [databaseConfig],
     }),
     // 数据库模块，异步配置
     TypeOrmModule.forRootAsync({

@@ -4,8 +4,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './user.entity.js';
+import { Repository, Not } from 'typeorm';
+import { User } from './user.entity';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -96,6 +96,3 @@ export class UserService {
 function notEqual(value: any) {
   return Not(value);
 }
-
-// 导入Not操作符
-import { Not } from 'typeorm';

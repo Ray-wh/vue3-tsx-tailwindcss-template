@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import generatedRoutes from '~pages';
 import { setupLayouts } from 'virtual:generated-layouts';
 import type { App } from 'vue';
@@ -20,7 +20,7 @@ const routes = setupLayouts(generatedRoutes).concat([
 
 // 创建路由实例
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
